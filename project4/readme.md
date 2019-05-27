@@ -37,12 +37,15 @@ Image normalization is changing the pixel value of each pixel in the image, lead
 Since MaxPooling leads to loss of information, it is preferred to use at 3 to 5 layers after the first convolutional layer, where the information regarding edges and gradient is bound to be available in a large network. Performing MaxPooling before edges or gradients leads to drop in accuracy of the network. 
 
 12. Concept of Transition Layers :
+Max pooling and 1x1 conv layers used together make up the transitional layers in the transition block. To overcome the problem of lrge number of kernels which leads to large parameters, 1x1 conv layer is added to reduce the number of channels by linearly combining them multiple times, along with max pooling to reduce the channel dimension.  
 
 13. Position of Transition Layer :
+Transition layer is positioned after a layer when global receptive field has reached 7x7 (empirically found). The logic and intuition of transition layer is explained above. 
 
 14. Number of Epochs and when to increase them :
 Number of epochs can be increased when accuracy of the network should be increased. But increasing can also lead to overfitting. 
 Larger number of epochs  : Increases the computation time and sometime lead to accuracy drop of the model.
+
 
 15. DropOut :
 Randomly dropping out nodes during training. These units are not considered during a particular forward or backward pass. At each training stage, individual nodes are either dropped out of the net with probability 1-p or kept with probability p. 
@@ -60,7 +63,7 @@ Batch Normalization normalizes all the images in that particular batch. BN helps
 For a particular input size, we  stop convolutions after a few layers when we know the receptive field achieved is good enough for the last layer to understand the features from the input 
 
 20. How do we know our network is not going well, comparatively, very early
-Overfitting
+
 
 21. Batch Size, and effects of batch size
 Passing all the data to the network at once is not advisable. The data is divided into small sizes(or batches) and given to the network one by one , and the weights are updated at the end of every step. Batch size refers to the total number of training examples present in a single batch.  
@@ -69,6 +72,7 @@ Ex: For a dataset with 1000 training images, we can divide into batches of 250 ,
 Larger batch size- Depending on the GPU the time to compute per epoch may decrease, needs batch normalization to regularize.
 
 22. When to add validation checks : 
+Validation checks are done after each epoch of training in all four design iterations. This helps us to see how our network is overfitting. If the training accuracy of the network at some epoch is very high compared to the validation accuracy, it indicates that the network has learnt a complex, intricate function which won't generaliae well for unseen data. 
 
 23. LR schedule and concept behind it :
 Reduces the learning rate over time. This has the effect of quickly learning good weights early and fine tuning them later. One of the easy methods is to decrease the learning rate gradually based on the epoch. 
