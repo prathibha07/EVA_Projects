@@ -14,6 +14,7 @@ Number of kernels is based on the number of classes and how many images we have 
 4. 1x1 Convolutions :
 We use the 1x1 convolutional filters to reduce the filter dimension. With more number of filters, computations increases drastically even with small filter size. Thus 1x1 serves to combine similar features together and reduce the number of parameters. These 1x1 conv layers can also be used to increase the number of filters based on the requirement of the network/architecture. 
 
+
 5. MaxPooling :
 Reduces dimensionality of the input by 50% and leads to a loss of resolution of the image by 25%. It helps in reducing the number of layers and doesn't add to the number of parameters, thus reducing computational cost 
 
@@ -60,24 +61,25 @@ Batch Normalization normalizes all the images in that particular batch. BN helps
 Randomly dropping out nodes during training. These units are not considered during a particular forward or backward pass. At each training stage, individual nodes are either dropped out of the net with probability 1-p or kept with probability p
 
 19. When do we introduce DropOut, or when do we know we have some overfitting :
-DropOuts helps to prevent over-fitting. We know our network is overfitting when it is performing well on the training data but not on the testing data. 
+DropOuts helps to prevent over-fitting. We know our network is overfitting when it is performing well on the training data but not on the validation data i.e Validation accuracy is low than the train accuracy. 
 
 20. Number of Epochs and when to increase them :
-Number of epochs can be increased when accuracy of the network should be increased. But increasing can also lead to overfitting. 
-Larger number of epochs  : Increases the computation time and sometime lead to accuracy drop of the model.
+Number of epochs are decided by the complexity of the network (weight space), and by the fact that how quickly can we converge. 
+More than a single epoch is needed to iteratively reach the optimal weights. 
 
-21. Batch Size, and effects of batch size
+21. Larger number of epochs  : 
+Number of epochs of training should be increased when the function learnt to map is complex and when we see the train/val accuracy is improving and has not plateaued yet.  Larger number of epochs is favoured when the weight space to be traversed to learn the optimal weights (the mapping), is complex such that in smaller number of epochs, iterative optimization techniques like gradient descent cannot achieve global minima weights wrt loss value.
+
+22. Batch Size, and effects of batch size
 Passing all the data to the network at once is not advisable. The data is divided into small sizes(or batches) and given to the network one by one , and the weights are updated at the end of every step. Batch size refers to the total number of training examples present in a single batch.  
 Batch size and number of batches are different. Iterations are the number of batches needed to complete one epoch. The number of batches is equal to the number of interations for one epoch. 
 Ex: For a dataset with 1000 training images, we can divide into batches of 250 , then it will take 4 iterations to complete 1 epoch.
 Larger batch size- Depending on the GPU the time to compute per epoch may decrease, needs batch normalization to regularize.
 
-22. When do we stop convolutions and go ahead with a larger kernel or some other alternative (which we have not yet covered) : 
+23. When do we stop convolutions and go ahead with a larger kernel or some other alternative (which we have not yet covered) : 
 For a particular input size, we  stop convolutions after a few layers when we know the receptive field achieved is good enough for the last layer to understand the features from the input 
 
-23. Adam vs SGD
+24. Adam vs SGD
 Sigmoid takes a real value as input and outputs a value between 0 and 1. It’s non-linear and continuously differentiable. Sigmoid works "like" probability and works well for models where we have to predict the probability as an output.
 Adam optimization algorithm is an extension to stochastic gradient descent and is used to update network weights iterative based in training data. A learning rate is maintained for each network weight (parameter) and separately adapted as learning unfolds.
 
-
-24. How do we know our network is not going well, comparatively, very early
