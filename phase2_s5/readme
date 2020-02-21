@@ -1,1 +1,15 @@
 MNIST dataset with Pytorch
+
+    Total params: 14,744
+    -with dropout of 0.1 
+    -with batchnorm
+    -with StepLR with step size = 6 and gamma = 0.1
+    - no of epochs- less than 15
+    
+    Accuracy acheived 
+    1) with bn , no rotate, with step lr - 99.2%
+    2) with bn no step,no rotate - 99.13%
+    3) with bn , rotate, no step 99.08%
+    4) without bn no step no rotate - 99%
+    5) with bn and rotate and step lr- accuracy falls- need to try for less degree of rotation
+     
