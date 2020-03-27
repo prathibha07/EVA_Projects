@@ -6,9 +6,11 @@ Video link https://youtu.be/ouLkj6xeufQ
 screenshot atari score                       ----  rl_p2s8_atari.png
 screenshot of program working on my computer ----  imgatari.png
 
-Q1b) Flow-chart diagram of 11+ functions and the main "for" loop describing the training process and models in https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
+Q1b) Flow-chart diagram of 11+ functions and the main "for" loop describing the training process and models in 
+REF: https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
 ----rl-eva-p2s8a.pdf---- pdf format
 
-Q2) Flow chart diagram fo code https://github.com/ikostrikov/pytorch-a3c
+Q2) Flow chart diagram for code 
+REF: https://github.com/ikostrikov/pytorch-a3c
 ----p2session 8b.png ----- png format
 ----p2Session8b.jpg  ----- jpg format
