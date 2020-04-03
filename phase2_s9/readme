@@ -1,1 +1,58 @@
+Step 1 : 
+> Init Function
+-- Initialize storage array for storing transitions
+-- Replay Buffer size is set to 1e6 samples, used to store Replay Memory
+-- set pointer to zeroth position of replay memory buffer
+> Add Function
+-- Add the new transition to the max size of the replay buffer if not full. iF full, the new transition to be add to the first position of the replay buffer, increase pointer till max size is reached, make 0 and loop back, else append it 
+> Sample Function- sample some batches
+-- To return random set of transitions. Total number of transitions will be equal to the batch size.
+-- Each transition to contain current state, Current action, Reward, Next state and done.
+-- Appemd each of them 
+-- Done is 1 if the episode is complete. Done is 0 if the episode is not complete.
+
+Step 2 : 
+class Actor - both actor target and actor model have the same DNN definition, hence definem only one network
+-- Define action network, a simple network by taking states as input. State includes all the physical parameters of a robot. 
+-- It takes state as an Input and prediction of max action. Max action is calculated using multiplying tanh function on predefined set of actions to get a continous action space. 
+
+Step 3 : 
+class Critic
+-- Critic class takes max action predicted by the actor and newState as input to predict Q values. 
+-- State and action are concatenated in Pytorch and passed as input to the network asper definition of critic model
+-- Weights of both the networks will be different. Any one of the critics can be used for back progation of values
+
+Step 4 and 5 :
+-- T3D Class : Initialize actor and target models and targets. Initialize both actor to same weights and all critics to same weight
+-- Step 4 Sample a batch of transitions according to batch size from replay buffer. All the transitions are taken by the actor model
+-- Step 5 Use the actor target to predict next action by passing next state as input from the replay buffer
+
+Step 6 :
+-- We add Gaussian noise to this next action a' and we clamp it in a range of values supported by the environment
+
+Step 7 and 8 :
+-- Takes the next action and next state and calculate Q values. Here the next state and next action are passed on to two critic targets so that the we can take modest of the Q values
+
+Step 9 :
+-- In pytorch the computational graph target Q needs to keep going until an episode is over. Only when the episode is over the computation graph needs to be detached. 
+-- Qt = r + gamma * min(Qt1, Qt2) 
+
+Step 10 :
+-- Two critic models take (s, a) and return two Q-Vales
+
+Step 11 :
+-- Compute critic loss for both critic model 1 and critic model 2 using MSE error against Min(TargetQ1, Target Q2)
+
+Step 12 :
+-- Backpropagate this critic loss and update the parameters of two Critic models
+
+Step 13 :
+--Once every two iterations, we update our Actor model by performing gradient ascent  on the output of the first Critic model
+
+Step 14 :
+-- we update our Actor Target by Polyak Averaging once in every two iterations. This is to ensure there is a momentum maintained before updating weights for the actor target. -- There should be significant evidence before updating.
+
+Step 15 :
+-- we update our Critic Targets by Polyak Averaging once in every two iterations. This is to ensure there is a momentum maintained before updating weights for the critic targets. -- There should be significant evidence before updating.
+
 
