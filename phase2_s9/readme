@@ -1,3 +1,5 @@
+Twin delayed DDPG (T3D model) implmentation
+
 Step 1 : 
 > Init Function
 -- Initialize storage array for storing transitions
