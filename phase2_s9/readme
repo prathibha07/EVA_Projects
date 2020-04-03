@@ -49,7 +49,7 @@ Step 12 :
 -- Backpropagate this critic loss and update the parameters of two Critic models
 
 Step 13 :
---Once every two iterations, we update our Actor model by performing gradient ascent  on the output of the first Critic model
+-- Once every two iterations, we update our Actor model by performing gradient ascent  on the output of the first Critic model
 
 Step 14 :
 -- we update our Actor Target by Polyak Averaging once in every two iterations. This is to ensure there is a momentum maintained before updating weights for the actor target. -- There should be significant evidence before updating.
