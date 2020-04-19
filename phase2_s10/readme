@@ -1,1 +1,60 @@
+Phase 2 Session 10 End Game Assignment 
+    Training a car(agent) to move around in the city and reach a pre-defined destination.
+    Reinforcement learning task - Agents learns to follow only on the road and gets penalised for hitting sand/obstacle
+
+Code ReadME:
+
+calc_obs - in map.py -    contains croping image logic
+
+max_action           -    it is the maximum magnitude of angle of rotation of the car, choosing it as 5.   
+
+action dimension     -    Action dimension is between -5 0 5.
+                          In order to get continous values as output from T3D algorithm, using tanh at the last layer, multiply with max_action. 
+                          thus output is a continous action space between -5 and 5 (angle of rotation of the car)
+
+Observation Space    -    Image of the car moving on the map is the observation space or state. 
+                          Car location is got by car.x and car.y 
+                                          and pixels around car is cropped and this contains info on the sand image too. 
+                          Resize car image to (10,20) and this is overlayed on top of the car image using some pixel calculations. 
+                          Car rotation is got by Vector(self.car.velocity).angle((xx,yy) 
+                          This value is further fed to Actor model (CNN 28*28) as state input 
+                        
+
+Replay Buffer       -     current observation - current state of the car in the road
+                          new observation     - state of the car after taking a particular action.
+                          action              - action taken through below steps: 
+                                                    using random.randrange(-5,5)*random.random() until start time
+                                                    Once sufficient memory is filled, using brain.select_action(np.array(observationspace)) 
+                                                    passing selected action through function self.step(action,last_distance) 
+                                                    take proper action on the envi/game and obtain new_obs, reward and done flags.
+                          reward             -  reward is alloted when agent takes the correct action towards goal.
+                          done               -  done does flag like actions, 
+                                                done is set true - if agentis unable toreach goal and is stuck in envi without much pos reward
+                                                                 - if resulted in end of an episode or not
+                                                                 - if goal is reached
+                         
+Code overall :
+    Crop the image around car which gives sand density 
+    Feed this to a simple CNN layer
+    Output of CNN, a tensor goes to TD3
+    Td3 calls the Actor-Critic and they work together to figure out optimal way
+
+Things Achieved : 
+    Integrating Kivy environment with T3D.
+    Cropped the pixels around the car, overlaid the car image on the cropped image and obtained the orientation of the car in the car image,
+    The car is running on the map, needs more training.
+
+Current underlying issues :
+    The car hitting the wall and getting struck.
+    The car is not going towards the goal.
+    Training is slow on CPU(need to integrate on colab) hence no proper video, have left for training, will update 
+  
+
+Some new steps to tackle during extension period3 :
+- Image padding to ensure when car moves towards the border is stopped, work on image density vs sand density
+- Make orientation more direction orientated by putting a triangle on top the car to help car move towards the goal more accuratelty
+- Work on correct rewards to penalize going towards the wall, going on the sand,living penalty etc.
+- work on different types of living penalty - while moving towards goal, away from goal, on sand, on road etc. 
+- play with number of episodes,randomly initialise car starting point at every reset
+- improve training by using gpu 
 
