@@ -1,26 +1,32 @@
 Youtube Link 
 https://youtu.be/lAr2sqpOJBA
+(Sorry for poor video quality, have some issues with screen recorder)
 
 Phase 2 Session 10 End Game Assignment 
     Training a car(agent) to move around in the city and reach a pre-defined destination.
-    Reinforcement learning task - Agents learns to follow only on the road and gets penalised for hitting sand/obstacle
+    Reinforcement learning task - Agent learns to follow only on the road and gets penalised for hitting sand/obstacle
 
 Environment Stack
   Kivy (map.py and car.kv) - for the city map, car and define other environment conditions
-  Pytorch (The T3D Model) ai.py file
+  Pytorch (for T3D Model) ai.py file
  
 Code ReadME:
 calc_obs - in map.py -    contains croping image logic
-max_action           -    it is the maximum magnitude of angle of rotation of the car, choosing it as 5.   
-action dimension     -    Action dimension is between -5 0 5.
+
+Parameters
+>CNN parameters
+>max_action           -    it is the maximum magnitude of angle of rotation of the car, choosing it as 5.   
+>action dimension     -    Action dimension is between -5 0 5.
                           In order to get continous values as output from T3D algorithm, using tanh at the last layer, multiply with max_action. 
                           thus output is a continous action space between -5 and 5 (angle of rotation of the car)
-Observation Space    -    Image of the car moving on the map is the observation space or state. 
+>Observation Space    -    Image of the car moving on the map is the observation space or state. 
                           Car location is got by car.x and car.y 
                                           and pixels around car is cropped and this contains info on the sand image too. 
                           Resize car image to (10,20) and this is overlayed on top of the car image using some pixel calculations. 
                           Car rotation is got by Vector(self.car.velocity).angle((xx,yy) 
                           This value is further fed to Actor model (CNN 28*28) as state input 
+
+
 Replay Buffer       -     current observation - current state of the car in the road
                           new observation     - state of the car after taking a particular action.
                           action              - action taken through below steps: 
@@ -34,7 +40,7 @@ Replay Buffer       -     current observation - current state of the car in the 
                                                                  - if resulted in end of an episode or not
                                                                  - if goal is reached
                           
- Code overall :
+ Code at a glace:
     Crop the image around car which gives sand density 
     Feed this to a simple CNN layer
     Output of CNN, a tensor goes to TD3
@@ -47,7 +53,7 @@ Things Achieved :
 
 Current underlying issues :
     The car hitting the wall and getting struck.
-    The car is not going towards the goal that accurately. 
+    The car is not going towards the goal that accurately and goes all over the place. 
     
    
     
