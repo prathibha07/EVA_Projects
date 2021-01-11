@@ -1,9 +1,9 @@
-Reinforcement Learning
+# Reinforcement Learning
 Using PyTorch to train a Deep Q Learning (DQN) agent on the Space Invaders (Atari 2600 games) task from the OpenAI Gym.
 Gym is a toolkit for developing and comparing reinforcement learning algorithms
-REF: https://gym.openai.com/envs/SpaceInvaders-v0/
+*REF:*  https://gym.openai.com/envs/SpaceInvaders-v0/
 
-Code Starter - https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
+*Code Starter* - https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
 
 Q1a) Training DQN agent on atari space invaders from OpenAI Gym
 Reinforcement Learning - Atari Space invaders
@@ -12,11 +12,11 @@ Screenshot atari score                       ----  rl_p2s8_atari.png
 Screenshot of program working on my computer ----  imgatari.png
 
 Q1b) Flow-chart diagram of 11+ functions and the main "for" loop describing the training process and models in 
-REF: https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
+*REF:*  https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
 ----rl-eva-p2s8a.pdf---- pdf format
 
 Q2) Flow chart diagram for code 
-REF: https://github.com/ikostrikov/pytorch-a3c
+*REF:* https://github.com/ikostrikov/pytorch-a3c
 This is a PyTorch implementation of Asynchronous Advantage Actor Critic (A3C) from "Asynchronous Methods for Deep Reinforcement Learning".
 ----p2session 8b.png ----- png format
 ----p2Session8b.jpg  ----- jpg format
