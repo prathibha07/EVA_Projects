@@ -1,4 +1,5 @@
 Reinforcement Learning
+Using PyTorch to train a Deep Q Learning (DQN) agent on the Space Invaders task from the OpenAI Gym.
 Code Starter - https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
 
 Q1a) Training DQN agent on atari space invaders from OpenAI Gym
