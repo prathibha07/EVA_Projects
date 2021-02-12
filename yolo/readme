@@ -1,1 +1,11 @@
+Yolo (v3) in action - https://www.youtube.com/watch?v=58GonmMMU8A
 
+Training an object detection model using a normal PC and an internet browser. Yes! It is possible. 
+Google Colab lets us install Nvidia CUDA inside the Colab runtime and takes only a couple of hours to train Tiny YoloV3 on my manually annotated images of the dog (~200-250) 
+In certain instances, it sometimes fails to detect the object from certain viewpoints. 
+Detection can be made more accurate by increasing the annotated images of the dogs and incorporating data augmentation techniques. 
+
+Reference code: https://github.com/rafiuddinkhan/Yolo-Training-GoogleColab
+Reference blog: =https://medium.com/@today.rafi/train-your-own-tiny-yolo-v3-on-google-colaboratory-with-the-custom-dataset-2e35db02bf8f
+
+Dog Video used for reference to detect the dogs:  "Top 10 Funny and Cute Dog Videos" from youtube channel: hrde2 
