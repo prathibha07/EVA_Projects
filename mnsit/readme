@@ -1,1 +1,5 @@
+*Write a DNN
+1. It must have less than 11000 parameters. 
+2. Achieve 99.4% validation accuracy on MNIST*
+
 
